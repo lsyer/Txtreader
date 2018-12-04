@@ -9,7 +9,7 @@ int main(int argc,char ** argv)
 	//txtReader->setWindowTitle(QObject::tr("TXT Reader --- By lsyer"));
         txtReader->setMinimumSize(270,196);
         txtReader->setMaximumSize(2430,1764);
-        //txtReader->resize(810,588);
+        //txtReader->resize(804,468);
 	txtReader->show();
 	return app.exec();
 }

@@ -3,7 +3,14 @@
 #include <QApplication>
 #include <QWidget>
 #include <QLabel>
-#include <QTextDocument>
+#include <QList>
+#include <QFontMetrics>
+#include <QLine>
+#include <QDebug>
+#include <QTime>
+#include <QPushButton>
+#include <QTextEdit>
+#include <QSpacerItem>
 #include <QGridLayout>
 #include <QSystemTrayIcon>
 #include <QCloseEvent>
@@ -18,36 +25,54 @@
 #include <QStyleOption>
 #include <QTranslator>
 #include <QUrl>
-#include "readerview.h"
+#include <QPainter>
+#include "ReaderView.h"
 class TxtReader : public QWidget
 {
 	Q_OBJECT
 public:
 	TxtReader(QWidget * parent = 0,QString infile = "");
+        void jumpToPrePage();
+        void jumpToNextPage();
 protected:
 	void keyPressEvent(QKeyEvent * event);
 	void mouseMoveEvent(QMouseEvent *event);
 	void mousePressEvent(QMouseEvent *event);
-	void closeEvent ( QCloseEvent * /*event*/ );
+        void closeEvent ( QCloseEvent * event );
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
 //for context menu
 	void contextMenuEvent(QContextMenuEvent *event);
-	void paintEvent(QPaintEvent *);
-    virtual void resizeEvent(QResizeEvent *);
+        void paintEvent(QPaintEvent *);
+        virtual void resizeEvent(QResizeEvent *event);
 private:
 	QString version,bgImage,uilang;
 	QFont txtFont;
 	QColor txtColor,bgColor;
-	int index;
+        QPalette pe;
+        int curPageNum,curOffset;
 	bool o_isfullscreen;
-	QLabel pagelabel;
-        QTextDocument *doc,*readerDoc,*InstructionDoc;
-        readerView *viewer;
+
+        QLabel viewTitleLabel;
+        ReaderView *viewContentEdit;
+        QLabel viewInstructionLabel;
+        QLabel viewPageLabel;
+        //QSpacerItem *leftSpacer,*rightSpacer;
+        QFrame upLine,bottomLine;
 	QGridLayout *layout;
+
+        QString FileContent;
+        QList<int> PageOffsetList;
+        int TotalPageNum;
+
 	QPoint dragPosition;
-	void setindex(int page);
-	int loadFile(const QString &fileName);
+        void jumpToOffset(int offset);
+        void jumpToPage(int pageNum);
+        int loadFile(const QString &fileName);
+        QString readInstructionContent();
+        void genPageList(QString &content,QList<int> &list);
+        void reGenPageList();
+
 	QIcon icon;
 	QAction *openAct;
 	QAction *aboutAct;
@@ -59,9 +84,10 @@ private:
 	QActionGroup *codecActionGroup;
 	QAction *jumpAct;
 	QMenu *bookmarkMenu;
-	QMap<int,QAction *> bookmarkArray;
+        QList<QAction *> bookmarkArray;
 	QAction *addBookmarkAct;
 	QAction *delBookmarkAct;
+        QAction *clearBookmarkAct;
 	QMenu *setfontMenu;
 	QAction *addTxtSizeAct;
 	QAction *subTxtSizeAct;
@@ -96,16 +122,23 @@ private:
 	QMenu *recentFilesMenu;
 	enum { MaxRecentFiles = 5 };
 	QAction *recentFileActs[MaxRecentFiles];
-	QAction *separatorAct;
-	void showinstruction();
+        QAction *separatorAct;
+
+        void setSizeBaseAndIncIncrement();
+        void backToRead();
 private slots:
 	void open();
-	void about();
-	void readOrInstruction();
+        void about();
+        void readOrInstruct();
+        void showChanges();
+        void myShowContextMenu(QPoint point);
 	void setcodecstr(QAction *action);
-	void jumptoindex();
+        void slotJumpToPage();
+        void getBookDependSetting();
+        void saveBookDependSetting();
 	void addBookmark();
 	void delBookmark();
+        void clearBookmark();
 	void openBookmark();
 	void addTxtSize();
 	void subTxtSize();
@@ -125,7 +158,6 @@ private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason reason);
 	void quitaction();
 //for recentfiles
-	void openRecentFile();
-	void changepagecount();
+        void openRecentFile();
 };
 #endif 

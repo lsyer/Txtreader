@@ -57,7 +57,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <value key="QtVersionId" type="int">0</value>
-   <value key="ToolChain" type="int">2</value>
+   <value key="ToolChain" type="int">0</value>
    <value key="addQDumper" type=""></value>
    <value key="buildConfiguration" type="int">2</value>
   </valuemap>
@@ -67,7 +67,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
    <value key="QtVersionId" type="int">0</value>
-   <value key="ToolChain" type="int">2</value>
+   <value key="ToolChain" type="int">0</value>
    <value key="addQDumper" type=""></value>
    <value key="buildConfiguration" type="int">0</value>
   </valuemap>
@@ -221,47 +221,108 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">ALLUSERSPROFILE=C:\Documents and Settings\All Users</value>
-    <value type="QString">APPDATA=C:\Documents and Settings\Administrator\Application Data</value>
-    <value type="QString">CLIENTNAME=Console</value>
-    <value type="QString">COMMONPROGRAMFILES=C:\Program Files\Common Files</value>
-    <value type="QString">COMPUTERNAME=MICROSOF-ADB2E6</value>
-    <value type="QString">COMSPEC=C:\WINDOWS\system32\cmd.exe</value>
-    <value type="QString">FP_NO_HOST_CHECK=NO</value>
-    <value type="QString">HOMEDRIVE=C:</value>
-    <value type="QString">HOMEPATH=\Documents and Settings\Administrator</value>
-    <value type="QString">LOGONSERVER=\\MICROSOF-ADB2E6</value>
-    <value type="QString">NUMBER_OF_PROCESSORS=2</value>
-    <value type="QString">OS=Windows_NT</value>
-    <value type="QString">PATH=D:\Qt\2010.02.1\qt\bin;d:\Qt\2010.02.1\qt\bin;d:\Qt\2010.02.1\bin;d:\Qt\2010.02.1\mingw\bin;C:\WINDOWS\System32</value>
-    <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH</value>
-    <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
-    <value type="QString">PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 13, GenuineIntel</value>
-    <value type="QString">PROCESSOR_LEVEL=6</value>
-    <value type="QString">PROCESSOR_REVISION=0f0d</value>
-    <value type="QString">PROGRAMFILES=C:\Program Files</value>
-    <value type="QString">PROMPT=$P$G</value>
-    <value type="QString">QMAKESPEC=win32-g++</value>
-    <value type="QString">QTDIR=D:/Qt/2010.02.1/qt</value>
-    <value type="QString">SESSIONNAME=Console</value>
-    <value type="QString">SYSTEMDRIVE=C:</value>
-    <value type="QString">SYSTEMROOT=C:\WINDOWS</value>
-    <value type="QString">TEMP=C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp</value>
-    <value type="QString">TMP=C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp</value>
-    <value type="QString">USERDOMAIN=MICROSOF-ADB2E6</value>
-    <value type="QString">USERNAME=Administrator</value>
-    <value type="QString">USERPROFILE=C:\Documents and Settings\Administrator</value>
-    <value type="QString">WINDIR=C:\WINDOWS</value>
+    <value type="QString">COLORTERM=1</value>
+    <value type="QString">COLUMNS=80</value>
+    <value type="QString">CONSOLE=/dev/console</value>
+    <value type="QString">CPU=i686</value>
+    <value type="QString">CSHEDIT=emacs</value>
+    <value type="QString">DAEMON=/usr/bin/lxdm</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ehQfzQaWNs,guid=65794b63bd2a30c714dd5d2a0000006a</value>
+    <value type="QString">DESKTOP_SESSION=LXDE</value>
+    <value type="QString">DISPLAY=:0</value>
+    <value type="QString">DO_BLOGD=no</value>
+    <value type="QString">DO_CONFIRM=no</value>
+    <value type="QString">DO_FASTBOOT=no</value>
+    <value type="QString">DO_FORCEFSCK=no</value>
+    <value type="QString">DO_QUIET=yes</value>
+    <value type="QString">ENV=/etc/bash.bashrc</value>
+    <value type="QString">FROM_HEADER=</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-kiMVeK</value>
+    <value type="QString">GNOME_KEYRING_PID=2014</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-NzxsMC/S.gpg-agent:2081:1</value>
+    <value type="QString">GTK_IM_MODULE=ibus</value>
+    <value type="QString">G_BROKEN_FILENAMES=1</value>
+    <value type="QString">HISTSIZE=1000</value>
+    <value type="QString">HOME=/root</value>
+    <value type="QString">HOST=linux-egh4.site</value>
+    <value type="QString">HOSTNAME=linux-egh4.site</value>
+    <value type="QString">HOSTTYPE=i386</value>
+    <value type="QString">INIT_VERSION=sysvinit-2.88</value>
+    <value type="QString">INPUTRC=/etc/inputrc</value>
+    <value type="QString">JAVA_BINDIR=/usr/lib/jvm/jre/bin</value>
+    <value type="QString">JAVA_HOME=/usr/lib/jvm/jre</value>
+    <value type="QString">JAVA_ROOT=/usr/lib/jvm/jre</value>
+    <value type="QString">JRE_HOME=/usr/lib/jvm/jre</value>
+    <value type="QString">KDEROOTHOME=/root/.kdm</value>
+    <value type="QString">LANG=POSIX</value>
+    <value type="QString">LANGUAGE=zh_CN.UTF-8</value>
+    <value type="QString">LC_CTYPE=zh_CN.UTF-8</value>
+    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
+    <value type="QString">LESS=-M -I -R</value>
+    <value type="QString">LESSCLOSE=lessclose.sh %s %s</value>
+    <value type="QString">LESSKEY=/etc/lesskey.bin</value>
+    <value type="QString">LESSOPEN=lessopen.sh %s</value>
+    <value type="QString">LESS_ADVANCED_PREPROCESSOR=no</value>
+    <value type="QString">LINES=25</value>
+    <value type="QString">LOGNAME=root</value>
+    <value type="QString">LS_COLORS=no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.xz=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:</value>
+    <value type="QString">LS_OPTIONS=-A -N --color=tty -T 0</value>
+    <value type="QString">MACHTYPE=i686-suse-linux</value>
+    <value type="QString">MAIL=/var/spool/mail/root</value>
+    <value type="QString">MANPATH=/usr/share/man:/usr/local/man</value>
+    <value type="QString">MAN_KEEP_FORMATTING=yes</value>
+    <value type="QString">MINICOM=-c on</value>
+    <value type="QString">MORE=-sl</value>
+    <value type="QString">NNTPSERVER=news</value>
+    <value type="QString">OSTYPE=linux</value>
+    <value type="QString">PAGER=less</value>
+    <value type="QString">PATH=/usr/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/jvm/jre/bin</value>
+    <value type="QString">PREVLEVEL=N</value>
+    <value type="QString">PROFILEREAD=true</value>
+    <value type="QString">PWD=/root</value>
+    <value type="QString">PYTHONSTARTUP=/etc/pythonstart</value>
+    <value type="QString">QTDIR=/usr/share/qt4/</value>
+    <value type="QString">QT_IM_MODULE=ibus</value>
+    <value type="QString">QT_IM_SWITCHER=imsw-multi</value>
+    <value type="QString">QT_SYSTEM_DIR=/usr/share/desktop-data</value>
+    <value type="QString">REDIRECT=/dev/char/../tty1</value>
+    <value type="QString">ROOTFS_BLKDEV=/dev/sda7</value>
+    <value type="QString">ROOTFS_FSCK=0</value>
+    <value type="QString">ROOTFS_FSTYPE=ext4</value>
+    <value type="QString">RUNLEVEL=5</value>
+    <value type="QString">SAL_USE_VCLPLUGIN=gtk</value>
+    <value type="QString">SHELL=/bin/bash</value>
+    <value type="QString">SHLVL=2</value>
+    <value type="QString">SPLASH=no</value>
+    <value type="QString">SPLASHCFG=</value>
+    <value type="QString">TERM=xterm</value>
+    <value type="QString">TMPDIR=/tmp</value>
+    <value type="QString">USER=root</value>
+    <value type="QString">WINDOWMANAGER=/usr/bin/startlxde</value>
+    <value type="QString">XAUTHORITY=/var/run/lxdm/lxdm-:0.auth</value>
+    <value type="QString">XCURSOR_THEME=DMZ</value>
+    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
+    <value type="QString">XDG_CONFIG_HOME=/root/.config</value>
+    <value type="QString">XDG_CURRENT_DESKTOP=LXDE</value>
+    <value type="QString">XDG_DATA_DIRS=/usr/local/share:/usr/share</value>
+    <value type="QString">XDG_MENU_PREFIX=lxde-</value>
+    <value type="QString">XDG_SESSION_COOKIE=20410853c4d80bdde6cab90200000164-1298977798.539771-1194679703</value>
+    <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
+    <value type="QString">XMODIFIERS=@im=ibus</value>
+    <value type="QString">XNLSPATH=/usr/share/X11/nls</value>
+    <value type="QString">XSESSION_IS_UP=yes</value>
+    <value type="QString">_LXSESSION_PID=2024</value>
+    <value type="QString">splash=silent</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
-    <value type="QString">D:/txtreader-0.5.3/txtreader.pro</value>
+    <value type="QString">/opt/ltmp/Reader/txtreader-0.6.4/txtreader.pro</value>
     <value type="QString">-spec</value>
-    <value type="QString">win32-g++</value>
+    <value type="QString">linux-g++</value>
     <value type="QString">-r</value>
    </valuelist>
-   <value key="abstractProcess.command" type="QString">d:/qt/2010.02.1/qt/bin/qmake.exe</value>
+   <value key="abstractProcess.command" type="QString">/usr/bin/qmake</value>
    <value key="abstractProcess.enabled" type="bool">false</value>
-   <value key="abstractProcess.workingDirectory" type="QString">D:/txtreader-0.5.3</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/opt/ltmp/Reader/txtreader-0.6.4</value>
   </valuemap>
  </data>
  <data>
@@ -269,45 +330,106 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">ALLUSERSPROFILE=C:\Documents and Settings\All Users</value>
-    <value type="QString">APPDATA=C:\Documents and Settings\Administrator\Application Data</value>
-    <value type="QString">CLIENTNAME=Console</value>
-    <value type="QString">COMMONPROGRAMFILES=C:\Program Files\Common Files</value>
-    <value type="QString">COMPUTERNAME=MICROSOF-ADB2E6</value>
-    <value type="QString">COMSPEC=C:\WINDOWS\system32\cmd.exe</value>
-    <value type="QString">FP_NO_HOST_CHECK=NO</value>
-    <value type="QString">HOMEDRIVE=C:</value>
-    <value type="QString">HOMEPATH=\Documents and Settings\Administrator</value>
-    <value type="QString">LOGONSERVER=\\MICROSOF-ADB2E6</value>
-    <value type="QString">NUMBER_OF_PROCESSORS=2</value>
-    <value type="QString">OS=Windows_NT</value>
-    <value type="QString">PATH=D:\Qt\2010.02.1\qt\bin;d:\Qt\2010.02.1\qt\bin;d:\Qt\2010.02.1\bin;d:\Qt\2010.02.1\mingw\bin;C:\WINDOWS\System32</value>
-    <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH</value>
-    <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
-    <value type="QString">PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 13, GenuineIntel</value>
-    <value type="QString">PROCESSOR_LEVEL=6</value>
-    <value type="QString">PROCESSOR_REVISION=0f0d</value>
-    <value type="QString">PROGRAMFILES=C:\Program Files</value>
-    <value type="QString">PROMPT=$P$G</value>
-    <value type="QString">QMAKESPEC=win32-g++</value>
-    <value type="QString">QTDIR=D:/Qt/2010.02.1/qt</value>
-    <value type="QString">SESSIONNAME=Console</value>
-    <value type="QString">SYSTEMDRIVE=C:</value>
-    <value type="QString">SYSTEMROOT=C:\WINDOWS</value>
-    <value type="QString">TEMP=C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp</value>
-    <value type="QString">TMP=C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp</value>
-    <value type="QString">USERDOMAIN=MICROSOF-ADB2E6</value>
-    <value type="QString">USERNAME=Administrator</value>
-    <value type="QString">USERPROFILE=C:\Documents and Settings\Administrator</value>
-    <value type="QString">WINDIR=C:\WINDOWS</value>
+    <value type="QString">COLORTERM=1</value>
+    <value type="QString">COLUMNS=80</value>
+    <value type="QString">CONSOLE=/dev/console</value>
+    <value type="QString">CPU=i686</value>
+    <value type="QString">CSHEDIT=emacs</value>
+    <value type="QString">DAEMON=/usr/bin/lxdm</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ehQfzQaWNs,guid=65794b63bd2a30c714dd5d2a0000006a</value>
+    <value type="QString">DESKTOP_SESSION=LXDE</value>
+    <value type="QString">DISPLAY=:0</value>
+    <value type="QString">DO_BLOGD=no</value>
+    <value type="QString">DO_CONFIRM=no</value>
+    <value type="QString">DO_FASTBOOT=no</value>
+    <value type="QString">DO_FORCEFSCK=no</value>
+    <value type="QString">DO_QUIET=yes</value>
+    <value type="QString">ENV=/etc/bash.bashrc</value>
+    <value type="QString">FROM_HEADER=</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-kiMVeK</value>
+    <value type="QString">GNOME_KEYRING_PID=2014</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-NzxsMC/S.gpg-agent:2081:1</value>
+    <value type="QString">GTK_IM_MODULE=ibus</value>
+    <value type="QString">G_BROKEN_FILENAMES=1</value>
+    <value type="QString">HISTSIZE=1000</value>
+    <value type="QString">HOME=/root</value>
+    <value type="QString">HOST=linux-egh4.site</value>
+    <value type="QString">HOSTNAME=linux-egh4.site</value>
+    <value type="QString">HOSTTYPE=i386</value>
+    <value type="QString">INIT_VERSION=sysvinit-2.88</value>
+    <value type="QString">INPUTRC=/etc/inputrc</value>
+    <value type="QString">JAVA_BINDIR=/usr/lib/jvm/jre/bin</value>
+    <value type="QString">JAVA_HOME=/usr/lib/jvm/jre</value>
+    <value type="QString">JAVA_ROOT=/usr/lib/jvm/jre</value>
+    <value type="QString">JRE_HOME=/usr/lib/jvm/jre</value>
+    <value type="QString">KDEROOTHOME=/root/.kdm</value>
+    <value type="QString">LANG=POSIX</value>
+    <value type="QString">LANGUAGE=zh_CN.UTF-8</value>
+    <value type="QString">LC_CTYPE=zh_CN.UTF-8</value>
+    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
+    <value type="QString">LESS=-M -I -R</value>
+    <value type="QString">LESSCLOSE=lessclose.sh %s %s</value>
+    <value type="QString">LESSKEY=/etc/lesskey.bin</value>
+    <value type="QString">LESSOPEN=lessopen.sh %s</value>
+    <value type="QString">LESS_ADVANCED_PREPROCESSOR=no</value>
+    <value type="QString">LINES=25</value>
+    <value type="QString">LOGNAME=root</value>
+    <value type="QString">LS_COLORS=no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.xz=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:</value>
+    <value type="QString">LS_OPTIONS=-A -N --color=tty -T 0</value>
+    <value type="QString">MACHTYPE=i686-suse-linux</value>
+    <value type="QString">MAIL=/var/spool/mail/root</value>
+    <value type="QString">MANPATH=/usr/share/man:/usr/local/man</value>
+    <value type="QString">MAN_KEEP_FORMATTING=yes</value>
+    <value type="QString">MINICOM=-c on</value>
+    <value type="QString">MORE=-sl</value>
+    <value type="QString">NNTPSERVER=news</value>
+    <value type="QString">OSTYPE=linux</value>
+    <value type="QString">PAGER=less</value>
+    <value type="QString">PATH=/usr/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/jvm/jre/bin</value>
+    <value type="QString">PREVLEVEL=N</value>
+    <value type="QString">PROFILEREAD=true</value>
+    <value type="QString">PWD=/root</value>
+    <value type="QString">PYTHONSTARTUP=/etc/pythonstart</value>
+    <value type="QString">QTDIR=/usr/share/qt4/</value>
+    <value type="QString">QT_IM_MODULE=ibus</value>
+    <value type="QString">QT_IM_SWITCHER=imsw-multi</value>
+    <value type="QString">QT_SYSTEM_DIR=/usr/share/desktop-data</value>
+    <value type="QString">REDIRECT=/dev/char/../tty1</value>
+    <value type="QString">ROOTFS_BLKDEV=/dev/sda7</value>
+    <value type="QString">ROOTFS_FSCK=0</value>
+    <value type="QString">ROOTFS_FSTYPE=ext4</value>
+    <value type="QString">RUNLEVEL=5</value>
+    <value type="QString">SAL_USE_VCLPLUGIN=gtk</value>
+    <value type="QString">SHELL=/bin/bash</value>
+    <value type="QString">SHLVL=2</value>
+    <value type="QString">SPLASH=no</value>
+    <value type="QString">SPLASHCFG=</value>
+    <value type="QString">TERM=xterm</value>
+    <value type="QString">TMPDIR=/tmp</value>
+    <value type="QString">USER=root</value>
+    <value type="QString">WINDOWMANAGER=/usr/bin/startlxde</value>
+    <value type="QString">XAUTHORITY=/var/run/lxdm/lxdm-:0.auth</value>
+    <value type="QString">XCURSOR_THEME=DMZ</value>
+    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
+    <value type="QString">XDG_CONFIG_HOME=/root/.config</value>
+    <value type="QString">XDG_CURRENT_DESKTOP=LXDE</value>
+    <value type="QString">XDG_DATA_DIRS=/usr/local/share:/usr/share</value>
+    <value type="QString">XDG_MENU_PREFIX=lxde-</value>
+    <value type="QString">XDG_SESSION_COOKIE=20410853c4d80bdde6cab90200000164-1298977798.539771-1194679703</value>
+    <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
+    <value type="QString">XMODIFIERS=@im=ibus</value>
+    <value type="QString">XNLSPATH=/usr/share/X11/nls</value>
+    <value type="QString">XSESSION_IS_UP=yes</value>
+    <value type="QString">_LXSESSION_PID=2024</value>
+    <value type="QString">splash=silent</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
     <value type="QString">-w</value>
    </valuelist>
-   <value key="abstractProcess.command" type="QString">D:/Qt/2010.02.1/mingw/bin/mingw32-make.exe</value>
+   <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
    <value key="abstractProcess.enabled" type="bool">true</value>
-   <value key="abstractProcess.workingDirectory" type="QString">D:/txtreader-0.5.3</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/opt/ltmp/Reader/txtreader-0.6.4</value>
   </valuemap>
  </data>
  <data>
@@ -315,46 +437,107 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">ALLUSERSPROFILE=C:\Documents and Settings\All Users</value>
-    <value type="QString">APPDATA=C:\Documents and Settings\Administrator\Application Data</value>
-    <value type="QString">CLIENTNAME=Console</value>
-    <value type="QString">COMMONPROGRAMFILES=C:\Program Files\Common Files</value>
-    <value type="QString">COMPUTERNAME=MICROSOF-ADB2E6</value>
-    <value type="QString">COMSPEC=C:\WINDOWS\system32\cmd.exe</value>
-    <value type="QString">FP_NO_HOST_CHECK=NO</value>
-    <value type="QString">HOMEDRIVE=C:</value>
-    <value type="QString">HOMEPATH=\Documents and Settings\Administrator</value>
-    <value type="QString">LOGONSERVER=\\MICROSOF-ADB2E6</value>
-    <value type="QString">NUMBER_OF_PROCESSORS=2</value>
-    <value type="QString">OS=Windows_NT</value>
-    <value type="QString">PATH=D:\Qt\2010.02.1\qt\bin;d:\Qt\2010.02.1\qt\bin;d:\Qt\2010.02.1\bin;d:\Qt\2010.02.1\mingw\bin;C:\WINDOWS\System32</value>
-    <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH</value>
-    <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
-    <value type="QString">PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 13, GenuineIntel</value>
-    <value type="QString">PROCESSOR_LEVEL=6</value>
-    <value type="QString">PROCESSOR_REVISION=0f0d</value>
-    <value type="QString">PROGRAMFILES=C:\Program Files</value>
-    <value type="QString">PROMPT=$P$G</value>
-    <value type="QString">QMAKESPEC=win32-g++</value>
-    <value type="QString">QTDIR=D:/Qt/2010.02.1/qt</value>
-    <value type="QString">SESSIONNAME=Console</value>
-    <value type="QString">SYSTEMDRIVE=C:</value>
-    <value type="QString">SYSTEMROOT=C:\WINDOWS</value>
-    <value type="QString">TEMP=C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp</value>
-    <value type="QString">TMP=C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp</value>
-    <value type="QString">USERDOMAIN=MICROSOF-ADB2E6</value>
-    <value type="QString">USERNAME=Administrator</value>
-    <value type="QString">USERPROFILE=C:\Documents and Settings\Administrator</value>
-    <value type="QString">WINDIR=C:\WINDOWS</value>
+    <value type="QString">COLORTERM=1</value>
+    <value type="QString">COLUMNS=80</value>
+    <value type="QString">CONSOLE=/dev/console</value>
+    <value type="QString">CPU=i686</value>
+    <value type="QString">CSHEDIT=emacs</value>
+    <value type="QString">DAEMON=/usr/bin/lxdm</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-BU9HSieyJR,guid=610a6558161a20306d49a0b200000027</value>
+    <value type="QString">DESKTOP_SESSION=LXDE</value>
+    <value type="QString">DISPLAY=:0</value>
+    <value type="QString">DO_BLOGD=no</value>
+    <value type="QString">DO_CONFIRM=no</value>
+    <value type="QString">DO_FASTBOOT=no</value>
+    <value type="QString">DO_FORCEFSCK=no</value>
+    <value type="QString">DO_QUIET=yes</value>
+    <value type="QString">ENV=/etc/bash.bashrc</value>
+    <value type="QString">FROM_HEADER=</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-ROQe6L</value>
+    <value type="QString">GNOME_KEYRING_PID=1892</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-Ots2Bn/S.gpg-agent:1959:1</value>
+    <value type="QString">GTK_IM_MODULE=ibus</value>
+    <value type="QString">G_BROKEN_FILENAMES=1</value>
+    <value type="QString">HISTSIZE=1000</value>
+    <value type="QString">HOME=/root</value>
+    <value type="QString">HOST=linux-egh4.site</value>
+    <value type="QString">HOSTNAME=linux-egh4.site</value>
+    <value type="QString">HOSTTYPE=i386</value>
+    <value type="QString">INIT_VERSION=sysvinit-2.88</value>
+    <value type="QString">INPUTRC=/etc/inputrc</value>
+    <value type="QString">JAVA_BINDIR=/usr/lib/jvm/jre/bin</value>
+    <value type="QString">JAVA_HOME=/usr/lib/jvm/jre</value>
+    <value type="QString">JAVA_ROOT=/usr/lib/jvm/jre</value>
+    <value type="QString">JRE_HOME=/usr/lib/jvm/jre</value>
+    <value type="QString">KDEROOTHOME=/root/.kdm</value>
+    <value type="QString">LANG=POSIX</value>
+    <value type="QString">LANGUAGE=zh_CN.UTF-8</value>
+    <value type="QString">LC_CTYPE=zh_CN.UTF-8</value>
+    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
+    <value type="QString">LESS=-M -I -R</value>
+    <value type="QString">LESSCLOSE=lessclose.sh %s %s</value>
+    <value type="QString">LESSKEY=/etc/lesskey.bin</value>
+    <value type="QString">LESSOPEN=lessopen.sh %s</value>
+    <value type="QString">LESS_ADVANCED_PREPROCESSOR=no</value>
+    <value type="QString">LINES=25</value>
+    <value type="QString">LOGNAME=root</value>
+    <value type="QString">LS_COLORS=no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.xz=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:</value>
+    <value type="QString">LS_OPTIONS=-A -N --color=tty -T 0</value>
+    <value type="QString">MACHTYPE=i686-suse-linux</value>
+    <value type="QString">MAIL=/var/spool/mail/root</value>
+    <value type="QString">MANPATH=/usr/share/man:/usr/local/man</value>
+    <value type="QString">MAN_KEEP_FORMATTING=yes</value>
+    <value type="QString">MINICOM=-c on</value>
+    <value type="QString">MORE=-sl</value>
+    <value type="QString">NNTPSERVER=news</value>
+    <value type="QString">OSTYPE=linux</value>
+    <value type="QString">PAGER=less</value>
+    <value type="QString">PATH=/usr/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/jvm/jre/bin</value>
+    <value type="QString">PREVLEVEL=N</value>
+    <value type="QString">PROFILEREAD=true</value>
+    <value type="QString">PWD=/root</value>
+    <value type="QString">PYTHONSTARTUP=/etc/pythonstart</value>
+    <value type="QString">QTDIR=/usr/share/qt4/</value>
+    <value type="QString">QT_IM_MODULE=ibus</value>
+    <value type="QString">QT_IM_SWITCHER=imsw-multi</value>
+    <value type="QString">QT_SYSTEM_DIR=/usr/share/desktop-data</value>
+    <value type="QString">REDIRECT=/dev/char/../tty1</value>
+    <value type="QString">ROOTFS_BLKDEV=/dev/sda7</value>
+    <value type="QString">ROOTFS_FSCK=0</value>
+    <value type="QString">ROOTFS_FSTYPE=ext4</value>
+    <value type="QString">RUNLEVEL=5</value>
+    <value type="QString">SAL_USE_VCLPLUGIN=gtk</value>
+    <value type="QString">SHELL=/bin/bash</value>
+    <value type="QString">SHLVL=2</value>
+    <value type="QString">SPLASH=no</value>
+    <value type="QString">SPLASHCFG=</value>
+    <value type="QString">TERM=xterm</value>
+    <value type="QString">TMPDIR=/tmp</value>
+    <value type="QString">USER=root</value>
+    <value type="QString">WINDOWMANAGER=/usr/bin/startlxde</value>
+    <value type="QString">XAUTHORITY=/var/run/lxdm/lxdm-:0.auth</value>
+    <value type="QString">XCURSOR_THEME=DMZ</value>
+    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
+    <value type="QString">XDG_CONFIG_HOME=/root/.config</value>
+    <value type="QString">XDG_CURRENT_DESKTOP=LXDE</value>
+    <value type="QString">XDG_DATA_DIRS=/usr/local/share:/usr/share</value>
+    <value type="QString">XDG_MENU_PREFIX=lxde-</value>
+    <value type="QString">XDG_SESSION_COOKIE=20410853c4d80bdde6cab90200000164-1298864129.573479-491668288</value>
+    <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
+    <value type="QString">XMODIFIERS=@im=ibus</value>
+    <value type="QString">XNLSPATH=/usr/share/X11/nls</value>
+    <value type="QString">XSESSION_IS_UP=yes</value>
+    <value type="QString">_LXSESSION_PID=1902</value>
+    <value type="QString">splash=silent</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">true</value>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
     <value type="QString">clean</value>
     <value type="QString">-w</value>
    </valuelist>
-   <value key="abstractProcess.command" type="QString">D:/Qt/2010.02.1/mingw/bin/mingw32-make.exe</value>
+   <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
    <value key="abstractProcess.enabled" type="bool">true</value>
-   <value key="abstractProcess.workingDirectory" type="QString">D:/txtreader-0.5.3</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/opt/ltmp/Reader/txtreader-0.6.4</value>
    <value key="cleanConfig" type="bool">true</value>
    <valuelist key="makeargs" type="QVariantList">
     <value type="QString">clean</value>
