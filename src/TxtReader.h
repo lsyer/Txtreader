@@ -48,8 +48,7 @@ protected:
 private:
 	QString version,bgImage,uilang;
 	QFont txtFont;
-	QColor txtColor,bgColor;
-        QPalette pe;
+        QColor txtColor,bgColor;
         int curPageNum,curOffset;
 	bool o_isfullscreen;
 
@@ -64,6 +63,7 @@ private:
         QString FileContent;
         QList<int> PageOffsetList;
         int TotalPageNum;
+        QString searchText;
 
 	QPoint dragPosition;
         void jumpToOffset(int offset);
@@ -78,6 +78,9 @@ private:
 	QAction *aboutAct;
 	QAction *instructionAct;
 	QString codecstr;
+        QMenu *searchMenu;
+        QAction *searchOriAct;
+        QAction *searchCurAct;
 	QMenu *codecMenu;
 	QAction *GB2312Act;
 	QAction *UTF8Act;
@@ -129,6 +132,8 @@ private:
 private slots:
 	void open();
         void about();
+        void slotSearchOri();
+        void slotSearchCur();
         void readOrInstruct();
         void showChanges();
         void myShowContextMenu(QPoint point);
@@ -146,7 +151,7 @@ private slots:
 	void setfontcolor();
 	void setbgcolor();
 	void setbgimage();
-	void delbgimage();
+        void resetbg();
 	void hideAndRestore();
 	void myhide();
 	void myrestore();

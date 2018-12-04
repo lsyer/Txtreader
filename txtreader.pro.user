@@ -227,7 +227,7 @@
     <value type="QString">CPU=i686</value>
     <value type="QString">CSHEDIT=emacs</value>
     <value type="QString">DAEMON=/usr/bin/lxdm</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ehQfzQaWNs,guid=65794b63bd2a30c714dd5d2a0000006a</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-Xw1k3bw3eA,guid=e3cd44d7e03dabec603759f500000028</value>
     <value type="QString">DESKTOP_SESSION=LXDE</value>
     <value type="QString">DISPLAY=:0</value>
     <value type="QString">DO_BLOGD=no</value>
@@ -237,9 +237,9 @@
     <value type="QString">DO_QUIET=yes</value>
     <value type="QString">ENV=/etc/bash.bashrc</value>
     <value type="QString">FROM_HEADER=</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-kiMVeK</value>
-    <value type="QString">GNOME_KEYRING_PID=2014</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-NzxsMC/S.gpg-agent:2081:1</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-Q6RojH</value>
+    <value type="QString">GNOME_KEYRING_PID=1734</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-1KXjFB/S.gpg-agent:1801:1</value>
     <value type="QString">GTK_IM_MODULE=ibus</value>
     <value type="QString">G_BROKEN_FILENAMES=1</value>
     <value type="QString">HISTSIZE=1000</value>
@@ -255,7 +255,6 @@
     <value type="QString">JRE_HOME=/usr/lib/jvm/jre</value>
     <value type="QString">KDEROOTHOME=/root/.kdm</value>
     <value type="QString">LANG=POSIX</value>
-    <value type="QString">LANGUAGE=zh_CN.UTF-8</value>
     <value type="QString">LC_CTYPE=zh_CN.UTF-8</value>
     <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
     <value type="QString">LESS=-M -I -R</value>
@@ -270,7 +269,6 @@
     <value type="QString">MACHTYPE=i686-suse-linux</value>
     <value type="QString">MAIL=/var/spool/mail/root</value>
     <value type="QString">MANPATH=/usr/share/man:/usr/local/man</value>
-    <value type="QString">MAN_KEEP_FORMATTING=yes</value>
     <value type="QString">MINICOM=-c on</value>
     <value type="QString">MORE=-sl</value>
     <value type="QString">NNTPSERVER=news</value>
@@ -306,23 +304,23 @@
     <value type="QString">XDG_CURRENT_DESKTOP=LXDE</value>
     <value type="QString">XDG_DATA_DIRS=/usr/local/share:/usr/share</value>
     <value type="QString">XDG_MENU_PREFIX=lxde-</value>
-    <value type="QString">XDG_SESSION_COOKIE=20410853c4d80bdde6cab90200000164-1298977798.539771-1194679703</value>
+    <value type="QString">XDG_SESSION_COOKIE=20410853c4d80bdde6cab90200000164-1300251430.498855-472803652</value>
     <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
     <value type="QString">XMODIFIERS=@im=ibus</value>
     <value type="QString">XNLSPATH=/usr/share/X11/nls</value>
     <value type="QString">XSESSION_IS_UP=yes</value>
-    <value type="QString">_LXSESSION_PID=2024</value>
+    <value type="QString">_LXSESSION_PID=1744</value>
     <value type="QString">splash=silent</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
-    <value type="QString">/opt/ltmp/Reader/txtreader-0.6.4/txtreader.pro</value>
+    <value type="QString">/opt/ltmp/Reader/txtreader-0.6.5/txtreader.pro</value>
     <value type="QString">-spec</value>
     <value type="QString">linux-g++</value>
     <value type="QString">-r</value>
    </valuelist>
    <value key="abstractProcess.command" type="QString">/usr/bin/qmake</value>
    <value key="abstractProcess.enabled" type="bool">false</value>
-   <value key="abstractProcess.workingDirectory" type="QString">/opt/ltmp/Reader/txtreader-0.6.4</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/opt/ltmp/Reader/txtreader-0.6.5</value>
   </valuemap>
  </data>
  <data>
@@ -336,7 +334,7 @@
     <value type="QString">CPU=i686</value>
     <value type="QString">CSHEDIT=emacs</value>
     <value type="QString">DAEMON=/usr/bin/lxdm</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ehQfzQaWNs,guid=65794b63bd2a30c714dd5d2a0000006a</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-Xw1k3bw3eA,guid=e3cd44d7e03dabec603759f500000028</value>
     <value type="QString">DESKTOP_SESSION=LXDE</value>
     <value type="QString">DISPLAY=:0</value>
     <value type="QString">DO_BLOGD=no</value>
@@ -346,9 +344,9 @@
     <value type="QString">DO_QUIET=yes</value>
     <value type="QString">ENV=/etc/bash.bashrc</value>
     <value type="QString">FROM_HEADER=</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-kiMVeK</value>
-    <value type="QString">GNOME_KEYRING_PID=2014</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-NzxsMC/S.gpg-agent:2081:1</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-Q6RojH</value>
+    <value type="QString">GNOME_KEYRING_PID=1734</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-1KXjFB/S.gpg-agent:1801:1</value>
     <value type="QString">GTK_IM_MODULE=ibus</value>
     <value type="QString">G_BROKEN_FILENAMES=1</value>
     <value type="QString">HISTSIZE=1000</value>
@@ -364,7 +362,6 @@
     <value type="QString">JRE_HOME=/usr/lib/jvm/jre</value>
     <value type="QString">KDEROOTHOME=/root/.kdm</value>
     <value type="QString">LANG=POSIX</value>
-    <value type="QString">LANGUAGE=zh_CN.UTF-8</value>
     <value type="QString">LC_CTYPE=zh_CN.UTF-8</value>
     <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
     <value type="QString">LESS=-M -I -R</value>
@@ -379,7 +376,6 @@
     <value type="QString">MACHTYPE=i686-suse-linux</value>
     <value type="QString">MAIL=/var/spool/mail/root</value>
     <value type="QString">MANPATH=/usr/share/man:/usr/local/man</value>
-    <value type="QString">MAN_KEEP_FORMATTING=yes</value>
     <value type="QString">MINICOM=-c on</value>
     <value type="QString">MORE=-sl</value>
     <value type="QString">NNTPSERVER=news</value>
@@ -415,12 +411,12 @@
     <value type="QString">XDG_CURRENT_DESKTOP=LXDE</value>
     <value type="QString">XDG_DATA_DIRS=/usr/local/share:/usr/share</value>
     <value type="QString">XDG_MENU_PREFIX=lxde-</value>
-    <value type="QString">XDG_SESSION_COOKIE=20410853c4d80bdde6cab90200000164-1298977798.539771-1194679703</value>
+    <value type="QString">XDG_SESSION_COOKIE=20410853c4d80bdde6cab90200000164-1300251430.498855-472803652</value>
     <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
     <value type="QString">XMODIFIERS=@im=ibus</value>
     <value type="QString">XNLSPATH=/usr/share/X11/nls</value>
     <value type="QString">XSESSION_IS_UP=yes</value>
-    <value type="QString">_LXSESSION_PID=2024</value>
+    <value type="QString">_LXSESSION_PID=1744</value>
     <value type="QString">splash=silent</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
@@ -429,7 +425,7 @@
    </valuelist>
    <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
    <value key="abstractProcess.enabled" type="bool">true</value>
-   <value key="abstractProcess.workingDirectory" type="QString">/opt/ltmp/Reader/txtreader-0.6.4</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/opt/ltmp/Reader/txtreader-0.6.5</value>
   </valuemap>
  </data>
  <data>

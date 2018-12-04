@@ -259,9 +259,32 @@ qrc_txtreader.o: qrc_txtreader.cpp
 
 ####### Install
 
-install:   FORCE
+install:   all
+	mkdir -p /usr/share/txtreader
+	cp -f txtreader /usr/share/txtreader/
+	cp -f icon.png /usr/share/txtreader/
+	cp -f README_*.HTML /usr/share/txtreader/
+	cp -f CHANGES.TXT /usr/share/txtreader/
+	mkdir -p /usr/bin
+	ln -s /usr/share/txtreader/txtreader /usr/bin/txtreader
+	#Install application link for X-Windows
+	mkdir -p /usr/share/applications
+	echo "[Desktop Entry]" > /usr/share/applications/txtreader.desktop
+	echo "Name=Txt Reader" >> /usr/share/applications/txtreader.desktop
+	echo "GenericName=Txt Reader" >> /usr/share/applications/txtreader.desktop
+	echo "GenericName[zh_CN]=文本阅读器" >> /usr/share/applications/txtreader.desktop
+	echo "Comment=Txt Reader for linux" >> /usr/share/applications/txtreader.desktop
+	echo "Comment[zh_CN]=Txt Reader(文本阅读器) for linux" >> /usr/share/applications/txtreader.desktop
+	echo "Exec=/usr/share/txtreader/txtreader" >> /usr/share/applications/txtreader.desktop
+	echo "Icon=/usr/share/txtreader/icon.png" >> /usr/share/applications/txtreader.desktop
+	echo "Terminal=0" >> /usr/share/applications/txtreader.desktop
+	echo "Type=Application" >> /usr/share/applications/txtreader.desktop
+	echo "Categories=Qt;KDE;Utility;" >> /usr/share/applications/txtreader.desktop
 
-uninstall:   FORCE
+uninstall:   all
+	rm -rf /usr/share/txtreader
+	rm -rf /usr/bin/txtreader
+	rm -rf /usr/share/applications/txtreader.desktop
 
 FORCE:
 

@@ -30,5 +30,8 @@
         <file>images/bookmark-del.png</file>
         <file>images/bookmark-new.png</file>
         <file>images/bookmark.png</file>
+        <file>images/search.png</file>
+        <file>images/searchCur.png</file>
+        <file>images/searchOri.png</file>
     </qresource>
 </RCC>

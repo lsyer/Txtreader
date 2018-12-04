@@ -3,7 +3,7 @@ TxtReader::TxtReader(QWidget * parent,QString infile)
 	:QWidget(parent)
 {
 	//w1 = 0;
-        version = QString("0.6.4");
+        version = QString("0.6.5");
         setWindowTitle( QString("TXTReader %1 --- By lsyer").arg(version));
         qApp->installTranslator(&appTranslator);
         qApp->setQuitOnLastWindowClosed(false);
@@ -41,18 +41,17 @@ TxtReader::TxtReader(QWidget * parent,QString infile)
         bottomLine.setFrameShadow(QFrame::Sunken);
         viewTitleLabel.setFixedHeight(15);
         QSpacerItem *leftSpacer=new QSpacerItem(15,1,QSizePolicy::Fixed,QSizePolicy::Fixed);
-        pe.setColor(QPalette::WindowText,txtColor);
         viewContentEdit = new ReaderView(this);
-        viewContentEdit->setPalette(pe);
+        viewContentEdit->setStyleSheet("color:"+txtColor.name()+";");
         viewContentEdit->setFont(txtFont);
-        connect(viewContentEdit,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(myShowContextMenu(QPoint)));
-        viewInstructionLabel.setPalette(pe);
+        //connect(viewContentEdit,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(myShowContextMenu(QPoint)));
         viewInstructionLabel.setFont(txtFont);
         viewInstructionLabel.setWordWrap(true);
         viewInstructionLabel.setAlignment(Qt::AlignTop|Qt::AlignLeft);
         viewInstructionLabel.setVisible(false);
         QSpacerItem *rightSpacer=new QSpacerItem(15,1,QSizePolicy::Fixed,QSizePolicy::Fixed);
         viewPageLabel.setFixedHeight(15);
+        viewPageLabel.setStyleSheet("color:"+txtColor.name()+";");
         viewPageLabel.setAlignment(Qt::AlignTop|Qt::AlignRight);
         //viewPageLabel.setText(QString(tr("第 %1 页/共 %2 页")).arg(curPageNum).arg(doc.pageCount()));
 
@@ -164,12 +163,36 @@ void TxtReader::genPageList(QString &content,QList<int> &list){
     int PageLineNow=0;
     int PageWidth=viewContentEdit->width()-8;
     int LineWidthNow=0;
-    int AsciiWidth=fm.averageCharWidth(),ChineseWidth=fm.maxWidth();
+    int AsciiWidth=fm.width("i"),ChineseWidth=qMax(fm.maxWidth(),fm.width("中"));
     int newPageOffset=0;
     list.append(0);
     int FileContentSize=content.size();
     for(int offset=0;offset<FileContentSize;offset++){
         int b = FileContent[offset].toAscii();
+
+        if(b ==0 ) {// Chinese
+            LineWidthNow += ChineseWidth;
+            if(LineWidthNow > PageWidth){
+                LineWidthNow = ChineseWidth;
+                PageLineNow++;
+                newPageOffset = offset;
+            }
+        }else if (b == 10){// \n
+            LineWidthNow=0;
+            PageLineNow++;
+            newPageOffset = offset+1;
+        }else if (b != 13){// not \r
+            // Ascii
+            LineWidthNow += AsciiWidth;
+            if(LineWidthNow > PageWidth){
+                LineWidthNow = AsciiWidth;
+                PageLineNow++;
+                newPageOffset = offset;
+            }
+        }
+
+        /**************************************
+         ******** optimized by upper code
         if (b == 10){// \n
             LineWidthNow=0;
             PageLineNow++;
@@ -186,6 +209,8 @@ void TxtReader::genPageList(QString &content,QList<int> &list){
                 newPageOffset = offset;
             }
         }
+        */
+
         if(PageLineNow==PageLineNum){
             PageLineNow=0;
             list.append(newPageOffset);
@@ -195,9 +220,9 @@ void TxtReader::genPageList(QString &content,QList<int> &list){
         list.append(FileContentSize);
 
     TotalPageNum=PageOffsetList.size() - 1;
-    qDebug()<<"txtFont.pointSize():"<<txtFont.pointSize()<<"\n";
-    qDebug()<<"PageWidth:"<<viewContentEdit->width()<<"  fm.maxWidth():"<<fm.maxWidth()<<"  fm.width():"<<fm.width(FileContent[2])<<"\n";
-    qDebug()<<"PageHeight:"<<viewContentEdit->height()<<"  LineHeight:"<<fm.height()<<"  lineSpacing:"<<fm.lineSpacing()<<"  leading:"<<fm.leading()<<"  PageLineNum:"<<PageLineNum<<"\n";
+    //qDebug()<<"txtFont.pointSize():"<<txtFont.pointSize()<<"\n";
+    //qDebug()<<"PageWidth:"<<viewContentEdit->width()<<"  fm.width(i):"<<fm.width("i")<<"  fm.width(ij):"<<fm.width("ij")<<"  fm.width():"<<fm.width(FileContent[20])<<"\n";
+    //qDebug()<<"PageHeight:"<<viewContentEdit->height()<<"  LineHeight:"<<fm.height()<<"  lineSpacing:"<<fm.lineSpacing()<<"  leading:"<<fm.leading()<<"  PageLineNum:"<<PageLineNum<<"\n";
     //qDebug()<<"FileContent Size:"<<FileContentSize<<"\n";
     //qDebug()<<"PageCount:"<<PageOffsetList.size()<<"\n";
 
@@ -359,7 +384,7 @@ void TxtReader::createActions()
     connect(setbgimageAct, SIGNAL(triggered()), this, SLOT(setbgimage()));
     
     delbgimageAct = new QAction(QIcon(":/images/reset.png"),"", this);
-    connect(delbgimageAct, SIGNAL(triggered()), this, SLOT(delbgimage()));
+    connect(delbgimageAct, SIGNAL(triggered()), this, SLOT(resetbg()));
 
     codecActionGroup = new QActionGroup(this);
     connect(codecActionGroup, SIGNAL(triggered(QAction *)),
@@ -367,14 +392,20 @@ void TxtReader::createActions()
     GB2312Act = new QAction(tr("&GB2312"), this);
     GB2312Act->setData("GB2312");
     GB2312Act->setCheckable(true);
-	codecActionGroup->addAction(GB2312Act);
-	if (codecstr == "GB2312") GB2312Act->setChecked(true);
+    codecActionGroup->addAction(GB2312Act);
+    if (codecstr == "GB2312") GB2312Act->setChecked(true);
 
     UTF8Act = new QAction(tr("&UTF-8"), this);
     UTF8Act->setData("UTF-8");
     UTF8Act->setCheckable(true);
-	codecActionGroup->addAction(UTF8Act);
-	if (codecstr == "UTF-8") UTF8Act->setChecked(true);
+    codecActionGroup->addAction(UTF8Act);
+    if (codecstr == "UTF-8") UTF8Act->setChecked(true);
+
+    searchOriAct = new QAction(QIcon(":/images/searchOri.png"),"", this);
+    connect(searchOriAct, SIGNAL(triggered()), this, SLOT(slotSearchOri()));
+
+    searchCurAct = new QAction(QIcon(":/images/searchCur.png"),"", this);
+    connect(searchCurAct, SIGNAL(triggered()), this, SLOT(slotSearchCur()));
 
     for (int i = 0; i < MaxRecentFiles; ++i) {
         recentFileActs[i] = new QAction(this);
@@ -447,34 +478,38 @@ void TxtReader::createLanguageMenu()
 
 void TxtReader::createTrayIcon()
 {
-	trayIconMenu = new QMenu(this);
-	trayIconMenu->addAction(openAct);
-	trayIconMenu->addAction(jumpAct);
+    trayIconMenu = new QMenu(this);
+    trayIconMenu->addAction(openAct);
+    trayIconMenu->addAction(jumpAct);
 
-	bookmarkMenu = trayIconMenu->addMenu(QIcon(":/images/bookmark.png"),"");
-	bookmarkMenu->addAction(addBookmarkAct);
-	bookmarkMenu->addAction(delBookmarkAct);
-        bookmarkMenu->addAction(clearBookmarkAct);
-        bookmarkMenu->addSeparator();
+    bookmarkMenu = trayIconMenu->addMenu(QIcon(":/images/bookmark.png"),"");
+    bookmarkMenu->addAction(addBookmarkAct);
+    bookmarkMenu->addAction(delBookmarkAct);
+    bookmarkMenu->addAction(clearBookmarkAct);
+    bookmarkMenu->addSeparator();
 
-	setfontMenu = trayIconMenu->addMenu(QIcon(":/images/font.png"),"");
-	setfontMenu->addAction(addTxtSizeAct);
-	setfontMenu->addAction(subTxtSizeAct);
-	setfontMenu->addAction(setfontAct);
-	setfontMenu->addAction(setfontcolorAct);
-	
-	bgMenu = trayIconMenu->addMenu(QIcon(":/images/bg.png"),"");
-	bgMenu->addAction(setbgcolorAct);
-	bgMenu->addAction(setbgimageAct);
-	bgMenu->addAction(delbgimageAct);
+    setfontMenu = trayIconMenu->addMenu(QIcon(":/images/font.png"),"");
+    setfontMenu->addAction(addTxtSizeAct);
+    setfontMenu->addAction(subTxtSizeAct);
+    setfontMenu->addAction(setfontAct);
+    setfontMenu->addAction(setfontcolorAct);
 
-	codecMenu = trayIconMenu->addMenu(QIcon(":/images/codec.png"),"");
-	codecMenu->addAction(GB2312Act);
-	codecMenu->addAction(UTF8Act);
+    bgMenu = trayIconMenu->addMenu(QIcon(":/images/bg.png"),"");
+    bgMenu->addAction(setbgcolorAct);
+    bgMenu->addAction(setbgimageAct);
+    bgMenu->addAction(delbgimageAct);
 
-	separatorAct = trayIconMenu->addSeparator();
-	for (int i = 0; i < MaxRecentFiles; ++i)
-		trayIconMenu->addAction(recentFileActs[i]);
+    codecMenu = trayIconMenu->addMenu(QIcon(":/images/codec.png"),"");
+    codecMenu->addAction(GB2312Act);
+    codecMenu->addAction(UTF8Act);
+
+    searchMenu = trayIconMenu->addMenu(QIcon(":/images/search.png"),"");
+    searchMenu->addAction(searchOriAct);
+    searchMenu->addAction(searchCurAct);
+
+    separatorAct = trayIconMenu->addSeparator();
+    for (int i = 0; i < MaxRecentFiles; ++i)
+            trayIconMenu->addAction(recentFileActs[i]);
 
     trayIconMenu->addSeparator();
     //trayIconMenu->addAction(maximizeAction);
@@ -541,11 +576,11 @@ QString TxtReader::strippedName(const QString &fullFileName)
 
 void TxtReader::open()
 {
-        QString fileName = QFileDialog::getOpenFileName(this,tr("Open new file"),QFileInfo(curFile).dir().path(),tr("text files (*.txt)"));
-        if(loadFile(fileName)){
-            reGenPageList();
-    		backToRead();
-		}
+    QString fileName = QFileDialog::getOpenFileName(this,tr("Open new file"),QFileInfo(curFile).dir().path(),tr("text files (*.txt)"));
+    if(loadFile(fileName)){
+        reGenPageList();
+            backToRead();
+            }
 }
 void TxtReader::about()
 {
@@ -553,16 +588,19 @@ void TxtReader::about()
     aboutDialog.setWindowIcon(this->windowIcon());
     aboutDialog.setWindowTitle(tr("About"));
     QGridLayout l;
+    QLabel p;
+    p.setPixmap(QPixmap(":/images/icon.png"));
     QLabel t;
-    t.setText(tr("<p align=center>TxtReader %1 </p><p align=right> Design by <a href='http://lishao378.blog.sohu.com' target=_blank>lsyer</a></p><p align=center>CopyLeft(C)2006-2008</p>").arg(version));
+    t.setText(tr("<p align=center>Txt Reader %1 </p><p align=right> Design by <a href='HOMEPAGE' target=_blank>lsyer</a></p><p align=center>CopyLeft(C)2006-YEAR</p>").arg(version));
     QPushButton c(tr("&Changes"));
     connect(&c,SIGNAL(clicked()),this,SLOT(showChanges()));
     QPushButton b(QIcon(":/images/close.png"),tr("&Back"),this);
     connect(&b,SIGNAL(clicked()),&aboutDialog,SLOT(close()));
     b.setFocus();
-    l.addWidget(&t,0,0,1,0,0);
-    l.addWidget(&c,1,0,Qt::AlignCenter);
-    l.addWidget(&b,1,1,Qt::AlignCenter);
+    l.addWidget(&p,0,0,Qt::AlignCenter);
+    l.addWidget(&t,0,1,1,2,Qt::AlignCenter);
+    l.addWidget(&c,1,0,1,2,Qt::AlignCenter);
+    l.addWidget(&b,1,2,Qt::AlignCenter);
     aboutDialog.setLayout(&l);
     aboutDialog.setFixedSize(aboutDialog.sizeHint());
     //aboutDialog.setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
@@ -572,37 +610,64 @@ void TxtReader::about()
 }
 void TxtReader::setcodecstr(QAction *action)
 {
-	//QAction *action = qobject_cast<QAction *>(sender());
-	//if (action){
-	codecstr = action->data().toString();
-	if (codecstr == "UTF-8"){
-		UTF8Act->setChecked(true);
-		GB2312Act->setChecked(false);
-	} else {
-		UTF8Act->setChecked(false);
-		GB2312Act->setChecked(true);
-	}
-        if(loadFile(curFile))
-            reGenPageList();
-	//}
-	return ;
+    //QAction *action = qobject_cast<QAction *>(sender());
+    //if (action){
+    codecstr = action->data().toString();
+    if (codecstr == "UTF-8"){
+            UTF8Act->setChecked(true);
+            GB2312Act->setChecked(false);
+    } else {
+            UTF8Act->setChecked(false);
+            GB2312Act->setChecked(true);
+    }
+    if(loadFile(curFile))
+        reGenPageList();
+    //}
+    return ;
 }
 void TxtReader::slotJumpToPage()
 {
      bool ok;
-     int i = QInputDialog::getInteger(this, QString("TxtReader %1").arg(version),
+     int i = QInputDialog::getInteger(this, QString("Txt Reader %1").arg(version),
                                           tr("Jump to:"), curPageNum,1,TotalPageNum,1, &ok);
      if (ok){
          jumpToPage(i);
          curOffset = PageOffsetList[curPageNum-1];
      }
 
-	return ;
+    return ;
+}
+void TxtReader::slotSearchOri()
+{
+    bool ok;
+    searchText = QInputDialog::getText(this, QString("Txt Reader %1").arg(version),
+                                         tr("Search:"), QLineEdit::Normal,searchText, &ok);
+    if ( ok && !(searchText.isNull()) ){
+        int pos=FileContent.indexOf(searchText);
+        if(pos != -1){
+            jumpToOffset(pos);
+            curOffset = pos;
+        }
+    }
+
+   return ;
+}
+void TxtReader::slotSearchCur()
+{
+    if ( !(searchText.isNull()) ){
+        int pos=FileContent.indexOf(searchText,curOffset + 1);
+        if(pos != -1){
+            jumpToOffset(pos);
+            curOffset = pos;
+        }
+    }
+
+   return ;
 }
 void TxtReader::addBookmark()
 {
 	bool ok;
-	QString text = QInputDialog::getText(this, QString("TxtReader %1").arg(version),
+        QString text = QInputDialog::getText(this, QString("Txt Reader %1").arg(version),
                                           tr("Please input the mark:"), QLineEdit::Normal,
                                           tr("%1").arg(curPageNum), &ok);
 	if (ok && !text.isEmpty()){
@@ -701,7 +766,7 @@ void TxtReader::subTxtSize()
 void TxtReader::setfont()
 {
 	bool ok;
-	QFont font = QFontDialog::getFont(&ok, txtFont, this,QString(tr("Set Font - TxtReader %1")).arg(version));
+        QFont font = QFontDialog::getFont(&ok, txtFont, this,QString(tr("Set Font - Txt Reader %1")).arg(version));
 	if (ok && font!=txtFont) {
 		txtFont = font;
                 this->setSizeIncrement(txtFont.pointSize(),txtFont.pointSize());
@@ -718,8 +783,8 @@ void TxtReader::setfontcolor()
 	QColor Color = QColorDialog::getColor(txtColor, this);
 	if (Color.isValid()) {
                 txtColor=Color;
-                pe.setColor(QPalette::WindowText,txtColor);
-                viewContentEdit->setPalette(pe);
+                viewContentEdit->setStyleSheet("color:"+txtColor.name()+";");
+                viewPageLabel.setStyleSheet("color:"+txtColor.name()+";");
 	}
 	return ;
 }
@@ -741,7 +806,7 @@ void TxtReader::setbgimage()
     }
 	return ;
 }
-void TxtReader::delbgimage()
+void TxtReader::resetbg()
 {
     bgImage = "";
     bgColor=QColor(Qt::white);
@@ -812,6 +877,8 @@ void TxtReader::retranslateUi()
     addBookmarkAct->setText(tr("&Add Bookmark"));// = new QAction(QIcon(":/images/addbookmark.png"),tr("(&A)添加书签"), this);
     delBookmarkAct->setText(tr("&Del Current"));
     clearBookmarkAct->setText(tr("&Clear All"));
+    searchOriAct->setText(tr("&Find"));
+    searchCurAct->setText(tr("&Next"));
     addTxtSizeAct->setText(tr("&Zoom In"));// = new QAction(QIcon(":/images/zoom-in.png"),tr("(&F)放  大"), this);
     subTxtSizeAct->setText(tr("&Zoom Out"));// = new QAction(QIcon(":/images/zoom-out.png"),tr("(&S)缩  小"), this);
     setfontAct->setText(tr("&Set Font"));// = new QAction(QIcon(":/images/setfont.png"),tr("(&A)设  置"), this);
@@ -820,7 +887,7 @@ void TxtReader::retranslateUi()
     setbgimageAct->setText(tr("&Bg image"));// = new QAction(QIcon(":/images/bgimage.png"),tr("(&P)图  片"), this);    
     delbgimageAct->setText(tr("&Reset"));// = new QAction(QIcon(":/images/reset.png"),tr("(&D)重  设"), this);
     viewfullscreenAction->setText(tr("&Full Screen"));// = new QAction(QIcon(":/images/fullscreen.png"),tr("(&F)全  屏"), this);    
-    nofullscreenAction->setText(tr("&Exit Fullscreen"));// = new QAction(QIcon(":/images/fullscreen.png"),tr("(&N)退出全屏"), this);    
+    nofullscreenAction->setText(tr("&Exit Fullscreen"));
     hiddenAction->setText(tr("&Hide"));// = new QAction(QIcon(":/images/min.png"),tr("(&H)隐  藏"), this);
     restoreAction->setText(tr("&Restore"));// = new QAction(QIcon(":/images/restore.png"),tr("(&R)恢  复"), this);
     quitAction->setText(tr("&Quit"));// = new QAction(QIcon(":/images/exit.png"),tr("(&Q)退  出"), this);
@@ -828,10 +895,11 @@ void TxtReader::retranslateUi()
     instructionAct->setText(tr("&Instruction"));// = new QAction(QIcon(":/images/instruction.png"),tr("(&I)程序说明"), this);
     
     languageMenu->setTitle(tr("&Language"));
-	bookmarkMenu->setTitle(tr("&Bookmark"));// = trayIconMenu->addMenu(QIcon(":/images/bookmark.png"),tr("(&B)书  签"));
-	setfontMenu->setTitle(tr("&Font"));// = trayIconMenu->addMenu(QIcon(":/images/font.png"),tr("(&F)字  体"));
-	bgMenu->setTitle(tr("&Background"));// = trayIconMenu->addMenu(QIcon(":/images/bg.png"),tr("(&G)背  景"));
-	codecMenu->setTitle(tr("&Codec"));// = trayIconMenu->addMenu(QIcon(":/images/codec.png"),tr("(&C)编  码"));
+    bookmarkMenu->setTitle(tr("&Bookmark"));// = trayIconMenu->addMenu(QIcon(":/images/bookmark.png"),tr("(&B)书  签"));
+    setfontMenu->setTitle(tr("&Font"));// = trayIconMenu->addMenu(QIcon(":/images/font.png"),tr("(&F)字  体"));
+    bgMenu->setTitle(tr("&Background"));// = trayIconMenu->addMenu(QIcon(":/images/bg.png"),tr("(&G)背  景"));
+    codecMenu->setTitle(tr("&Codec"));// = trayIconMenu->addMenu(QIcon(":/images/codec.png"),tr("(&C)编  码"));
+    searchMenu->setTitle(tr("&Search"));
 }
 
 void TxtReader::iconActivated(QSystemTrayIcon::ActivationReason reason)
