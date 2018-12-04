@@ -3,7 +3,7 @@ TxtReader::TxtReader(QWidget * parent,QString infile)
 	:QWidget(parent)
 {
 	//w1 = 0;
-        version = QString("0.6.5");
+        version = QString("0.6.6");
         setWindowTitle( QString("TXTReader %1 --- By lsyer").arg(version));
         qApp->installTranslator(&appTranslator);
         qApp->setQuitOnLastWindowClosed(false);
@@ -40,10 +40,12 @@ TxtReader::TxtReader(QWidget * parent,QString infile)
         bottomLine.setFrameShape(QFrame::HLine);
         bottomLine.setFrameShadow(QFrame::Sunken);
         viewTitleLabel.setFixedHeight(15);
+        viewTitleLabel.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
         QSpacerItem *leftSpacer=new QSpacerItem(15,1,QSizePolicy::Fixed,QSizePolicy::Fixed);
         viewContentEdit = new ReaderView(this);
         viewContentEdit->setStyleSheet("color:"+txtColor.name()+";");
         viewContentEdit->setFont(txtFont);
+        viewContentEdit->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
         //connect(viewContentEdit,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(myShowContextMenu(QPoint)));
         viewInstructionLabel.setFont(txtFont);
         viewInstructionLabel.setWordWrap(true);
@@ -51,16 +53,17 @@ TxtReader::TxtReader(QWidget * parent,QString infile)
         viewInstructionLabel.setVisible(false);
         QSpacerItem *rightSpacer=new QSpacerItem(15,1,QSizePolicy::Fixed,QSizePolicy::Fixed);
         viewPageLabel.setFixedHeight(15);
+        viewPageLabel.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
         viewPageLabel.setStyleSheet("color:"+txtColor.name()+";");
         viewPageLabel.setAlignment(Qt::AlignTop|Qt::AlignRight);
         //viewPageLabel.setText(QString(tr("第 %1 页/共 %2 页")).arg(curPageNum).arg(doc.pageCount()));
 
         QGridLayout *layout = new QGridLayout;
-        layout->addItem(leftSpacer,0,0);
         layout->addWidget(&viewTitleLabel,0,1);
-        layout->addItem(rightSpacer,0,2);
         layout->addWidget(&upLine,1,1);
+        layout->addItem(leftSpacer,2,0);
         layout->addWidget(viewContentEdit,2,1);
+        layout->addItem(rightSpacer,2,2);
         layout->addWidget(&viewInstructionLabel,3,1);
         layout->addWidget(&bottomLine,4,1);
         layout->addWidget(&viewPageLabel,5,1);
@@ -155,7 +158,9 @@ void TxtReader::jumpToNextPage(){
 void TxtReader::genPageList(QString &content,QList<int> &list){
     /**/
     QApplication::setOverrideCursor(Qt::WaitCursor);
-    qDebug()<<"StartTime:"<<QTime().currentTime().toString()<<"\n";
+    QTime t;
+    t.restart();
+    //qDebug()<<"StartTime:"<<QTime().currentTime().toString()<<"\n";
 
     list.clear();
     QFontMetrics fm=QFontMetrics(txtFont);
@@ -226,7 +231,8 @@ void TxtReader::genPageList(QString &content,QList<int> &list){
     //qDebug()<<"FileContent Size:"<<FileContentSize<<"\n";
     //qDebug()<<"PageCount:"<<PageOffsetList.size()<<"\n";
 
-    qDebug()<<"CompleteTime:"<<QTime().currentTime().toString()<<"\n";
+    //qDebug()<<"CompleteTime:"<<QTime().currentTime().toString()<<"\n";
+    qDebug()<<"ElapsedTime:"<<t.elapsed()<<"\n";
     QApplication::restoreOverrideCursor();
     /**/
 
@@ -242,8 +248,8 @@ void TxtReader::reGenPageList()
 int TxtReader::loadFile(const QString &fileName)
 {
     if (fileName.isEmpty()) {
-                readOrInstruct();
-                return 0;
+        showInstruction();
+        return 0;
     }
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
@@ -287,19 +293,21 @@ QString TxtReader::readInstructionContent(){
 }
 
 void TxtReader::readOrInstruct(){
-    static int i = 0;
-    i = ++i % 2;
-    if(i){
-        if(viewInstructionLabel.text().isEmpty())
-            viewInstructionLabel.setText(readInstructionContent());
-
-        viewContentEdit->setVisible(false);
-        viewPageLabel.setText("");
-        viewInstructionLabel.setVisible(true);
-        instructionAct->setText(tr("&Go Back"));
+    if(viewContentEdit->isVisible()){
+        showInstruction();
     }else{
     	backToRead();
     }
+}
+void TxtReader::showInstruction()
+{
+    if(viewInstructionLabel.text().isEmpty())
+        viewInstructionLabel.setText(readInstructionContent());
+
+    viewContentEdit->setVisible(false);
+    viewPageLabel.setText("");
+    viewInstructionLabel.setVisible(true);
+    instructionAct->setText(tr("&Go Back"));
 }
 void TxtReader::backToRead()
 {
@@ -576,11 +584,16 @@ QString TxtReader::strippedName(const QString &fullFileName)
 
 void TxtReader::open()
 {
+    backToRead();
+    if(viewContentEdit->toPlainText()=="")
+        viewContentEdit->setText("Wating...");
+
     QString fileName = QFileDialog::getOpenFileName(this,tr("Open new file"),QFileInfo(curFile).dir().path(),tr("text files (*.txt)"));
     if(loadFile(fileName)){
         reGenPageList();
-            backToRead();
-            }
+     }else{
+        showInstruction();
+    }
 }
 void TxtReader::about()
 {

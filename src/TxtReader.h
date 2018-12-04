@@ -128,6 +128,7 @@ private:
         QAction *separatorAct;
 
         void setSizeBaseAndIncIncrement();
+        void showInstruction();
         void backToRead();
 private slots:
 	void open();
