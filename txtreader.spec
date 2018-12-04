@@ -1,7 +1,7 @@
 Summary:  	Txt Reader(文本阅读器) for linux
 Name:           txtreader
 Version:        0.5.2
-Release:        1
+Release:        3
 License:       	GPL
 Group:          Desktop/KDE
 BuildRoot:     	/var/tmp/%{name}-%{version}-root
@@ -32,7 +32,6 @@ Terminal=0
 Type=Application
 Categories=Qt;KDE;Utility;
 EOF
-rpmclean
 %clean
 rm -rf $RPM_BUILD_ROOT
 %post

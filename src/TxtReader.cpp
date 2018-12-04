@@ -1,19 +1,19 @@
 #include "TxtReader.h"
-//#include <QDebug>
+#include <QDebug>
 TxtReader::TxtReader(QWidget * parent,QString infile)
 	:QWidget(parent)
 {
 	//w1 = 0;
-	version = QString("0.5.2");
+	version = QString("0.5.3");
 	setWindowTitle( QString(tr("TXT Reader %1 --- By lsyer")).arg(version));
 	qApp->installTranslator(&appTranslator);
 	setAcceptDrops(true);
 	
     QSettings settings("lsyer", "txtreader");
 	QPoint pos = settings.value("pos", QPoint(100, 60)).toPoint();
-	QSize size = settings.value("size", QSize(800, 600)).toSize();
+        QSize size = settings.value("size", QSize(840, 618)).toSize();
 	curFile = settings.value("curFile", QString("")).toString();
-	txtFont.fromString(settings.value("txtFont"/*,txtFont.toString()*/).toString());
+        txtFont.fromString(settings.value("txtFont",QString("仿宋_GB2312,14,-1,5,50,0,0,0,0,0")).toString());
 	txtColor=QColor(settings.value("txtColor", QColor("#000000")).toString());
 	index = settings.value("index", 1).toInt();
 	o_isfullscreen = settings.value("o_isfullscreen", 0).toBool();
@@ -33,8 +33,10 @@ TxtReader::TxtReader(QWidget * parent,QString infile)
 	createLanguageMenu();
 	createTrayIcon();
 	setStyleSheet( "TxtReader {background-color: "+bgColor.name()+";background-image: url("+bgImage+");background-position:center;;}");
-	doc.setDefaultFont(txtFont);
-	
+        readerDoc = new QTextDocument(this);
+        doc = readerDoc;
+        doc->setDefaultFont(txtFont);
+
 	if(o_isfullscreen){
 		viewfullscreenAction->setEnabled(false);
 		nofullscreenAction->setEnabled(true);
@@ -55,12 +57,17 @@ TxtReader::TxtReader(QWidget * parent,QString infile)
 	trayIcon->setToolTip(QString("TxtReader %1").arg(version));
 	trayIcon->show();
 	QGridLayout *layout = new QGridLayout;
-	viewer=new readerView(&doc,this);
+        viewer=new readerView(doc,this);
 	viewer->ctx.palette.setColor(QPalette::Text, txtColor);
 	//viewer->viewpage(index);
-	pagelabel.setFixedHeight(15);
-	pagelabel.setAlignment(Qt::AlignRight);
-	//pagelabel.setText(QString(tr("第 %1 页/共 %2 页")).arg(index).arg(doc.pageCount()));
+        pagelabel.setFixedHeight(12);
+        pagelabel.setAlignment(Qt::AlignTop|Qt::AlignRight);
+        //pagelabel.setText(QString(tr("第 %1 页/共 %2 页")).arg(index).arg(doc.pageCount()));
+        viewer->interPageSpacing[0]=15;
+        viewer->interPageSpacing[1]=viewer->interPageSpacing[0]-pagelabel.height();
+        this->setBaseSize(2*viewer->interPageSpacing[0],2*viewer->interPageSpacing[0]);
+        this->setSizeIncrement(txtFont.pointSize(),txtFont.pointSize());
+
 	layout->addWidget(viewer,0,0);
 	layout->addWidget(&pagelabel,1,0);
 	this->setLayout(layout);
@@ -72,7 +79,7 @@ TxtReader::TxtReader(QWidget * parent,QString infile)
 	if(infile.isEmpty())
 		loadFile(curFile);
 	else
-		loadFile(infile);
+                loadFile(infile);
 }
 
 void TxtReader::resizeEvent(QResizeEvent *)
@@ -82,33 +89,29 @@ void TxtReader::resizeEvent(QResizeEvent *)
 void TxtReader::changepagecount()
 {
 	setindex(index);
+        pagelabel.setText(QString(tr("Page %1 /Total %2")).arg(index).arg(doc->pageCount()));
 }
 
 void TxtReader::setindex(int newindex)
 {
 	if(newindex < 1)
 		index = 1;
-	else if(newindex > doc.pageCount())
-		index = doc.pageCount();
+        else if(newindex > doc->pageCount())
+                index = doc->pageCount();
 	else
 		index = newindex;
 	
-	viewer->viewpage(index);
-	pagelabel.setText(QString(tr("Page %1 /Total %2")).arg(index).arg(doc.pageCount()));
+        viewer->viewpage(index);
+        pagelabel.setText(QString(tr("Page %1 /Total %2")).arg(index).arg(doc->pageCount()));
 }
 int TxtReader::loadFile(const QString &fileName)
 {
-	if (fileName.isEmpty()) {
+    if (fileName.isEmpty()) {
 		showinstruction();
 		return 1;
     }
-    if (curFile!=fileName) {
-		qDeleteAll(bookmarkArray);
-		bookmarkArray.clear();
-        setindex(1);
-    }
-	QFile file(fileName);
-	if (!file.open(QFile::ReadOnly | QFile::Text)) {
+    QFile file(fileName);
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
 		showinstruction();
 		return 1;
     }
@@ -117,12 +120,18 @@ int TxtReader::loadFile(const QString &fileName)
 	//printf("codec:%s\n",(const char *)codecstr.toLocal8Bit());
 	in.setCodec((const char *)codecstr.toLocal8Bit());
 	QApplication::setOverrideCursor(Qt::WaitCursor);
-	doc.setPlainText(in.readAll());
+        doc->setPlainText(in.readAll());
 	QApplication::restoreOverrideCursor();
 
-	setCurrentFile(fileName);
-	//statusBar()->showMessage(tr("File loaded"), 2000);
-	return 1;
+        if (curFile!=fileName) {
+            qDeleteAll(bookmarkArray);
+            bookmarkArray.clear();
+            setindex(1);
+        }
+        setCurrentFile(fileName);
+        //statusBar()->showMessage(tr("File loaded"), 2000);
+
+        return 1;
 }
 
 void TxtReader::readOrInstruction(){
@@ -131,10 +140,16 @@ void TxtReader::readOrInstruction(){
 	i = ++i % 2;
 	if(i){
 		page = index;
-		showinstruction();
+                InstructionDoc = new QTextDocument(this);
+                InstructionDoc->setDefaultFont(txtFont);
+                doc = InstructionDoc;
+                viewer->setDoc(doc);
+                showinstruction();
 		instructionAct->setText(tr("&Go Back"));
 	}else{
-		loadFile(curFile);
+                //loadFile(curFile);
+                doc = readerDoc;
+                viewer->setDoc(doc);
 		setindex(page);
 		instructionAct->setText(tr("&Instruction"));
 	}
@@ -150,7 +165,7 @@ void TxtReader::showinstruction(){
 
 	QTextStream in(&file);
 	in.setCodec("UTF-8");
-	doc.setHtml(in.readAll());
+        doc->setHtml(in.readAll());
 	setindex(1);
 }
 void TxtReader::createActions()
@@ -408,7 +423,7 @@ void TxtReader::jumptoindex()
 {
      bool ok;
      int i = QInputDialog::getInteger(this, QString("TxtReader %1").arg(version),
-                                          tr("Jump to:"), index,1,doc.pageCount(),1, &ok);
+                                          tr("Jump to:"), index,1,doc->pageCount(),1, &ok);
      if (ok)
          setindex(i);
 
@@ -449,8 +464,9 @@ void TxtReader::addTxtSize()
 {
 	if(txtFont.pointSize() < 25){
 		txtFont.setPointSize(txtFont.pointSize()+1);
+                this->setSizeIncrement(txtFont.pointSize(),txtFont.pointSize());
 		QApplication::setOverrideCursor(Qt::WaitCursor);
-		doc.setDefaultFont(txtFont);
+                doc->setDefaultFont(txtFont);
 		QApplication::restoreOverrideCursor();
 		setindex(index);
 	}
@@ -460,8 +476,9 @@ void TxtReader::subTxtSize()
 {
 	if(txtFont.pointSize() > 5){
 		txtFont.setPointSize(txtFont.pointSize()-1);
+                this->setSizeIncrement(txtFont.pointSize(),txtFont.pointSize());
 		QApplication::setOverrideCursor(Qt::WaitCursor);
-		doc.setDefaultFont(txtFont);
+                doc->setDefaultFont(txtFont);
 		QApplication::restoreOverrideCursor();
 		setindex(index);
 	}
@@ -473,8 +490,9 @@ void TxtReader::setfont()
 	QFont font = QFontDialog::getFont(&ok, txtFont, this,QString(tr("Set Font - TxtReader %1")).arg(version));
 	if (ok && font!=txtFont) {
 		txtFont = font;
+                this->setSizeIncrement(txtFont.pointSize(),txtFont.pointSize());
 		QApplication::setOverrideCursor(Qt::WaitCursor);
-		doc.setDefaultFont(txtFont);
+                doc->setDefaultFont(txtFont);
 		QApplication::restoreOverrideCursor();
 		setindex(index);
 	}
@@ -581,7 +599,7 @@ void TxtReader::switchLanguage(QAction *action)
 
 void TxtReader::retranslateUi()
 {
-	pagelabel.setText(QString(tr("Page %1 /Total %2")).arg(index).arg(doc.pageCount()));
+        pagelabel.setText(QString(tr("Page %1 /Total %2")).arg(index).arg(doc->pageCount()));
     //newAction->setText(tr("&New"));//
     openAct->setText(tr("&Open"));// = new QAction(QIcon(":/images/open.png"),tr("(&O)打  开"), this);
     jumpAct->setText(tr("&Jump"));// = new QAction(QIcon(":/images/jump.png"),tr("(&J)跳  转"), this);

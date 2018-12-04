@@ -42,8 +42,8 @@ private:
 	int index;
 	bool o_isfullscreen;
 	QLabel pagelabel;
-	QTextDocument doc;
-	readerView *viewer;
+        QTextDocument *doc,*readerDoc,*InstructionDoc;
+        readerView *viewer;
 	QGridLayout *layout;
 	QPoint dragPosition;
 	void setindex(int page);

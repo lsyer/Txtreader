@@ -12,3 +12,6 @@ HEADERS += src/readerview.h src/TxtReader.h
 SOURCES += src/main.cpp src/readerview.cpp src/TxtReader.cpp
 RESOURCES += txtreader.qrc
 RC_FILE = myapp.rc
+win32 {
+QMAKE_LFLAGS += -static-libgcc
+}
